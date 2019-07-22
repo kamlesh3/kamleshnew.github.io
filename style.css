@@ -1,0 +1,22 @@
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    color: aqua;
+}
+
+.viewheight {
+    height: 90vh;
+}
+
+.animation1 {
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: 5;
+}
+
+.hov:hover {
+    color: blue;
+    display: underline;
+}
