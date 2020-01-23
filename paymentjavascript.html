@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        paymentvalidate</title>
+    <script type="text/javascript">
+        function PaymentValid() {
+            var current = new Date();
+            var return_value = true;
+            var username = form1.account.value;
+            var password1 = form1.pwd.value;
+            var a = form1.dd.value;
+            var b = form1.mm.value;
+            var c = form1.yyyy.value;
+            var option = form1.pay;
+            if ((option[0].checked == false) && (option[1].checked == false)) {
+                window.alert("Please select your card type");
+                return false;
+            }
+            if (username == "") {
+                window.alert("Please enter AC number or Card number");
+                return false;
+            }
+            if (isNaN(username)) {
+                window.alert("Characters are not allowed");
+                return false;
+            }
+            if ((username.length <= 16) || (username.length >= 20)) {
+                window.alert("AC number or Card number length must be between 16 and 20");
+                return false;
+            }
+            if (password1 == "") {
+                window.alert("Please enter your password");
+                return false;
+            }
+            if ((password1.length <= 5) || (password1.length >= 20)) {
+                window.alert("Password length must be between 5 and 10");
+                return false;
+            }
+            if (a == "" && b == "" && c == "") {
+                window.alert("enter complete expiry date of your card");
+                return false;
+            }
+            if (a < 32 && b < 13 && c >= current.getFullYear()) {
+                if (c > current.getFullYear()) {
+                    window.alert("your card is validated");
+                    return false;
+                } else if (c == current.getFullYear()) {
+                    if (b > current.getMonth()) {
+                        window.alert(" your card is validated");
+                        return false;
+                    } else if (b == current.getMonth()) {
+                        if (a > current.getDate()) {
+                            window.alert("your card is validated");
+                            return false;
+                        }
+                    }
+                } else {
+                    window.alert("Your card has expired");
+                    return false;
+                }
+            } else {
+                window.alert(" card has expired");
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body bgcolor="pink">
+    <center>
+        <h2>Enjoy the Shopping with special Offers</h2>
+        <form name="form1" onsubmit="return PaymentValid()">
+            <input name="pay" type="radio">Credit card<input name="pay" type="radio">Debit card<br><br> Bank
+            <select name="bank">
+<option>sbi</option>
+<option>HSBC</option>
+<option>ICICI</option>
+<option>others</option>
+</select><br><br> Account/Card number:
+            <input name="account" type="text"><br><br> Net banking id/Password:<input name="pwd" type="text"><br><br> Enter date of expiryof account/card:<input name="dd" type="text" size=2>(dd)
+            <input name="mm" type="text" size=2>(mm)
+            <input name="yyyy" type="text" size=4>(yyyy)<br><br>
+            <input type="submit" value="Accept">
+            <input type="reset" value="Reject">
+        </form>
+    </center>
+</body>
+
+</html>
